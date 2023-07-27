@@ -13,7 +13,7 @@ resource "aws_iam_account_password_policy" "strict" {
   password_reuse_prevention      = 7
 }
 
-resource "aws_iam_role" ch_"role" {
+resource "aws_iam_role" "ch_role" {
   name = "CloudHealth-RO-Role"
   description = "A Read Only Role for CloudHealth to use"
   assume_role_policy = <<EOF
