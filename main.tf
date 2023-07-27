@@ -48,9 +48,9 @@ resource "aws_iam_policy" "ch_policy" {
     {
       "Effect": "Allow",
       "Action": [
+        "appstream:Describe*",
+        "appstream:List*",
         "autoscaling:Describe*",
-        "aws-portal:ViewBilling",
-        "aws-portal:ViewUsage",
         "cloudformation:ListStacks",
         "cloudformation:ListStackResources",
         "cloudformation:DescribeStacks",
@@ -89,14 +89,11 @@ resource "aws_iam_policy" "ch_policy" {
         "elasticloadbalancing:Describe*",
         "elasticmapreduce:Describe*",
         "elasticmapreduce:List*",
-        "eks:Describe*",
-        "eks:List*",
         "es:List*",
         "es:Describe*",
         "firehose:ListDeliveryStreams",
         "firehose:DescribeDeliveryStream",
         "firehose:ListTagsForDeliveryStream",
-        "fsx:Describe*",
         "iam:List*",
         "iam:Get*",
         "iam:GenerateCredentialReport",
@@ -105,11 +102,13 @@ resource "aws_iam_policy" "ch_policy" {
         "kms:DescribeKey",
         "kms:GetKeyRotationStatus",
         "kms:ListKeys",
+        "kms:ListResourceTags",
         "lambda:List*",
         "logs:Describe*",
-        "logs:List*",
+        "logs:ListTagsLogGroup",
         "organizations:ListAccounts",
         "organizations:ListTagsForResource",
+        "organizations:DescribeOrganization",
         "redshift:Describe*",
         "route53:Get*",
         "route53:List*",
@@ -138,7 +137,10 @@ resource "aws_iam_policy" "ch_policy" {
         "sqs:ListQueues",
         "storagegateway:List*",
         "storagegateway:Describe*",
-        "workspaces:Describe*"
+        "workspaces:Describe*",
+        "eks:Describe*",
+        "eks:List*",
+        "fsx:Describe*"
       ],
       "Resource": "*"
     }
