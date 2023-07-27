@@ -13,7 +13,7 @@ resource "aws_iam_account_password_policy" "strict" {
   password_reuse_prevention      = 7
 }
 
-resource "aws_iam_role" "role" {
+resource "aws_iam_role" ch_"role" {
   name = "CloudHealth-RO-Role"
   description = "A Read Only Role for CloudHealth to use"
   assume_role_policy = <<EOF
@@ -37,7 +37,7 @@ resource "aws_iam_role" "role" {
 EOF
 }
 
-resource "aws_iam_policy" "policy" {
+resource "aws_iam_policy" "ch_policy" {
   name        = "CloudHealth-RO-Policy"
   description = "A Read Only Policy for ClouldHealth to use"
 
@@ -149,20 +149,20 @@ resource "aws_iam_policy" "policy" {
 EOF
 }
 
-resource "aws_iam_role_policy_attachment" "policy-attach" {
-  role       = aws_iam_role.role.name
-  policy_arn = aws_iam_policy.policy.arn
+resource "aws_iam_role_policy_attachment" "ch_policy-attach" {
+  role       = aws_iam_role.ch_role.name
+  policy_arn = aws_iam_policy.ch_policy.arn
 }
 
-resource "aws_iam_user" "user" {
+resource "aws_iam_user" "sl_user" {
   name = "em7"
 }
 
-resource "aws_iam_group" "group" {
+resource "aws_iam_group" "sl_group" {
   name = "CDW-EM7-Group"
 }
 
-resource "aws_iam_policy" "policy" {
+resource "aws_iam_policy" "sl_policy" {
   name        = "ScienceLogicDynamicApplicationPolicy"
   description = "A policy for the em7 IAM user for CDW monitoring"
 
@@ -290,17 +290,17 @@ resource "aws_iam_policy" "policy" {
 EOF
 }
 
-resource "aws_iam_policy_attachment" "test-attach" {
+resource "aws_iam_policy_attachment" "sl_policy-attach" {
   name       = "test-attachment"
-  groups     = [aws_iam_group.group.name]
-  policy_arn = aws_iam_policy.policy.arn
+  groups     = [aws_iam_group.sl_group.name]
+  policy_arn = aws_iam_policy.sl_policy.arn
 }
 
 resource "aws_iam_user_group_membership" "add-user" {
-  user = aws_iam_user.user.name
+  user = aws_iam_user.sl_user.name
 
   groups = [
-    aws_iam_group.group.name,
+    aws_iam_group.sl_group.name,
   ]
 }
 
